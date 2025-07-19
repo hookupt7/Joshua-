@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stripe | Log in</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <link rel="icon" href="https://stripe.com/favicon.ico">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #635bff 0%, #8f6bff 100%); }
+        .input-focus:focus { box-shadow: 0 0 0 1px #635bff; border-color: #635bff; }
+        .password-toggle { right: 12px; top: 50%; transform: translateY(-50%); }
+        .stripe-logo { background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTMuMyAyMy45YzAgMi4zLTEuMyAzLjYtMy44IDMuNkgydjE5LjJoNi43YzIuNSAwIDMuOC0xLjMgMy44LTMuNiAwLTEuNC0uNi0yLjUtMS42LTMuMSAxLjQtLjcgMi4yLTIgMi4yLTMuN3YtOC44em0tMy0xNGMwLTEtLjYtMS41LTEuOC0xLjVINXYzLjJoMi43YzEuMiAwIDEuOC0uNSAxLjgtMS41em0uMyA2LjNjMC0xLjEtLjctMS43LTItMS43SDV2My42aDMuMWMxLjIgMCAxLjktLjYgMS45LTEuN3YtLjJ6bTEyLjUgNy42YzIuNSAwIDMuOC0xLjMgMy44LTMuNiAwLTEuNy0uOC0zLTIuMi0zLjcgMS0uNiAxLjYtMS43IDEuNi0zLjEgMC0yLjMtMS4zLTMuNi0zLjgtMy42aC02Ljd2MTkuOGg2LjdhNi42IDYuNiAwIDAgMCAxLjYtLjJjMi4zLS42IDMuNi0yIDMuNi00LjIgMC0xLjQtLjYtMi41LTEuNi0zLjEgMS40LS43IDIuMi0yIDIuMi0zLjd2LS4yem0tMy4xLTEwLjNjMS4yIDAgMS44LjUgMS44IDEuNXMtLjYgMS41LTEuOCAxLjVoLTMuMXYtMy4yaDMuMXptLjMgNi4zYzEuMyAwIDIgLjYgMiAxLjd2LjJjMCAxLjEtLjcgMS43LTIgMS43aC0zLjF2LTMuNmgzLjF6IiBmaWxsPSIjNjM1YmZmIi8+PC9zdmc+"); }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- Stripe Navbar -->
+    <nav class="bg-white py-3 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="stripe-logo w-7 h-7 bg-contain bg-no-repeat"></div>
+                <span class="text-xl font-semibold text-gray-900">Stripe</span>
+            </div>
+            <a href="https://support.stripe.com/" class="text-sm font-medium text-gray-500 hover:text-gray-700">Help</a>
+        </div>
+    </nav>
+
+    <!-- Login Form -->
+    <main class="flex-grow flex items-center justify-center py-8 px-4 sm:px-6 lg:px-8">
+        <div class="w-full max-w-sm">
+            <div class="bg-white py-8 px-10 shadow-sm border border-gray-100 rounded-lg">
+                <div class="text-center mb-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Log in to Stripe</h1>
+                    <p class="mt-1 text-sm text-gray-600">
+                        Don't have an account? <a href="#" class="font-medium text-[#635bff] hover:text-[#8f6bff]">Sign up</a>
+                    </p>
+                </div>
+
+                <form id="loginForm" class="space-y-5">
+                    <div>
+                        <label for="loginEmail" class="block text-sm font-medium text-gray-700 mb-1">Email address</label>
+                        <input
+                            type="email"
+                            id="loginEmail"
+                            name="email"
+                            required
+                            autocomplete="email"
+                            class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm input-focus focus:outline-none sm:text-sm"
+                            placeholder="you@example.com"
+                        >
+                    </div>
+
+                    <div class="relative">
+                        <label for="loginPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            name="password"
+                            required
+                            minlength="8"
+                            autocomplete="current-password"
+                            class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm input-focus focus:outline-none sm:text-sm pr-10"
+                            placeholder="••••••••"
+                        >
+                        <button type="button" class="absolute password-toggle text-gray-400 hover:text-gray-500">
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                            </svg>
+                        </button>
+                        <div class="mt-1 flex justify-end">
+                            <a href="#" class="text-sm text-[#635bff] hover:text-[#8f6bff]">Forgot password?</a>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full flex justify-center gradient-bg text-white py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#635bff] transition-opacity">
+                        Log in
+                    </button>
+                </form>
+
+                <div class="mt-6">
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-200"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-2 bg-white text-gray-500">Or continue with</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 grid grid-cols-2 gap-3">
+                        <button type="button" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972-3.332 0-6.033-2.701-6.033-6.032s2.701-6.032 6.033-6.032c1.498 0 2.866.549 3.921 1.453l2.814-2.814c-1.784-1.664-4.153-2.675-6.735-2.675-5.522 0-10 4.477-10 10s4.478 10 10 10c8.396 0 10-7.524 10-10 0-.67-.069-1.325-.189-1.955h-9.811z"/>
+                            </svg>
+                        </button>
+                        <button type="button" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 23 23">
+                                <path d="M11.5 11.5H1V1h10.5v10.5zm10.5 0H12V1h10.5v10.5zM11.5 23H1V12h10.5v11zm10.5 0H12V12h10.5v11z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 text-center text-xs text-gray-500">
+                <p>© 2025 Stripe, Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Password toggle
+        document.querySelector('.password-toggle')?.addEventListener('click', function() {
+            const input = document.getElementById('loginPassword');
+            input.type = input.type === 'password' ? 'text' : 'password';
+            this.innerHTML = input.type === 'password' ? 
+                '<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>' :
+                '<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/></svg>';
+        });
+    </script>
+</body>
+</html>
